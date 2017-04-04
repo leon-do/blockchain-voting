@@ -1,5 +1,4 @@
 var fs = require('fs')
-
 var Web3 = require('web3')
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
@@ -59,13 +58,6 @@ VotingContract.new(['Rama','Nick','Jose'],{data: contract.code, from: web3.eth.a
 
             // Vote #1
             contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
-
-            // Vote #2
-            contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
-
-            // Vote #3
-            contractInstance.voteForCandidate('Nick', {from: web3.eth.accounts[0]})
-
 
             // This function returns the total votes a candidate has received so far
             console.log('\n\n\n TOTAL VOTES:')
