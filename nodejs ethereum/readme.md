@@ -11,3 +11,5 @@ https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutoria
 `$ node_modules/.bin/testrpc`
 
 `$ node server.js`
+
+copy paste line  `address: '0x2d898d435cd9a1d83277633b3e16bd5b25975e04',` into index.js

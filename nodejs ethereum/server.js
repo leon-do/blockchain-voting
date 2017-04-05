@@ -57,7 +57,7 @@ VotingContract.new(['Rama','Nick','Jose'],{data: contract.code, from: web3.eth.a
             console.log(contractInstance)
 
             // Vote #1
-            contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
+            //contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
 
             // This function returns the total votes a candidate has received so far
             console.log('\n\n\n TOTAL VOTES:')
