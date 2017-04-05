@@ -2,19 +2,21 @@ pragma solidity ^0.4.0;
 
 contract myContract {
 
-    uint public totalVotesA = 0;
-    uint public totalVotesB = 0;
+    uint public voteA = 0;
+    uint public voteB = 0;
 
-    function incrementer(uint[] userArray){
+    function totalVotes(uint[] userArray) returns (uint){
         if (userArray[0] != 123) throw;
         
         if (userArray[1] == 1){
-            totalVotesA = totalVotesA + 1;
+            voteA = voteA + 1;
+            return voteA;
         }
         
         
         if (userArray[1] == 2){
-            totalVotesB = totalVotesB + 1;
+            voteB = voteB + 1;
+            return voteB;
         }
     }    
 }

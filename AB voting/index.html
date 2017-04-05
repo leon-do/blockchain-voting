@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <button id='voteBttn' onclick="onVote()""> Vote </button>
+
+</body>
+
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script>
+    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    abi = JSON.parse('[{"constant":false,"inputs":[{"name":"userArray","type":"uint256[]"}],"name":"totalVotes","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteA","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteB","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}]')
+    VotingContract = web3.eth.contract(abi);
+    
+    // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
+    contractInstance = VotingContract.at('0xd1b81592b3cbd9b8eaa4561a586159c8ec1651a3');
+
+    function onVote(){
+        contractInstance.totalVotes([123,1], {from: web3.eth.accounts[0]}, function() {
+            console.log(contractInstance.totalVotes.call([123,1]).toString());
+        });
+    }
+
+</script>
+
+
+
+</html>

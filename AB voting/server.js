@@ -2,15 +2,11 @@ var fs = require('fs')
 var Web3 = require('web3')
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
-//lists all of the test accounts
-console.log('\n\n\n ACCOUNTS: \n' + web3.eth.accounts) 
-
-
 
 // ===============MAKE CONTRACT========================================
 
 //from the voting.sol file
-var code = fs.readFileSync('voting.sol').toString()
+var code = fs.readFileSync('voteAB.sol').toString()
 
 
 
@@ -18,8 +14,6 @@ var code = fs.readFileSync('voting.sol').toString()
 
 //compile voting.sol contract.
 var contract =  web3.eth.compile.solidity(code)
-console.log('\n\n\n CONTRACT:')
-//console.log(contract.info.abiDefinition)
 
 /*
 contract will have 2 important fields
@@ -43,8 +37,7 @@ VotingContract.new(['Rama','Nick','Jose'],{data: contract.code, from: web3.eth.a
     if(!error) {
 
         if(!contract.address) {
-        console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
-
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
         } else {
 
             // ===============INTERACT WITH CONTRACT========================================
@@ -53,16 +46,8 @@ VotingContract.new(['Rama','Nick','Jose'],{data: contract.code, from: web3.eth.a
             var contractInstance = VotingContract.at(contract.address)
 
             // huge object from voting.sol
-            console.log('\n\n\n CONTRACT INSTANCE:')
-            console.log(contractInstance)
-
-            // Vote #1
-            //contractInstance.voteForCandidate('Rama', {from: web3.eth.accounts[0]})
-
-            // This function returns the total votes a candidate has received so far
-            console.log('\n\n\n TOTAL VOTES:')
-            console.log(contractInstance.totalVotesFor.call('Rama')) //should return a number
-
+            console.log('\n\n\n CONTRACT ADDRESS:')
+            console.log(contractInstance.address)
         }
 
     }
