@@ -1,4 +1,4 @@
-/*
+tota/*
     https://www.youtube.com/watch?v=gMNPN2ofAvM
     user inputs an argument into myFunction which will change myInteger
     http://i.imgur.com/gbSEtNI.png
