@@ -20,6 +20,7 @@ contract Voting {
   we will pass an array of candidates who will be contesting in the election
   */
   function Voting(bytes32[] candidateNames) {
+    //make the list public
     candidateList = candidateNames;
   }
 

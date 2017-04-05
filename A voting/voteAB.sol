@@ -2,10 +2,10 @@ pragma solidity ^0.4.0;
 
 contract myContract {
 
-    int public voteA = -1;
-    int public voteB = -1;
+    uint public voteA = 0;
+    uint public voteB = 0;
 
-    function totalVotes(uint[] userArray) returns (int){
+    function totalVotes(uint[] userArray) returns (uint){
         if (userArray[0] != 123) throw;
         
         if (userArray[1] == 1){

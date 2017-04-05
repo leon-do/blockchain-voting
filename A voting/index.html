@@ -13,11 +13,7 @@
     click vote
     </pre>
 
-    <button id='voteBttn' onclick="onVoteA()""> Vote A </button>
-    <button id='voteBttn' onclick="onVoteB()""> Vote B </button>
-
-    <div id='voteA'> Votes for A </div>
-    <div id='voteB'> Votes for B </div>
+    <button id='voteBttn' onclick="onVote()""> Vote </button>
 
 </body>
 
@@ -32,22 +28,14 @@
     VotingContract = web3.eth.contract(abi);
     
     // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
-    contractInstance = VotingContract.at('0x50f3dcc18263c94778a0294466642958f3a809f0');
+    contractInstance = VotingContract.at('0xb7e3e69e8e36954cb36cc0be7d11c249a6f3e07e');
 
     //when user clicks on button
-    function onVoteA(){
+    function onVote(){
         //interact with contract
         contractInstance.totalVotes([123,1], {from: web3.eth.accounts[0]}, function() {
             //get results and display for user
-            $('#voteA').text(contractInstance.totalVotes.call([123,1]).toString())
-        });
-    }
-
-    function onVoteB(){
-        //interact with contract
-        contractInstance.totalVotes([123,2], {from: web3.eth.accounts[0]}, function() {
-            //get results and display for user
-            $('#voteB').text(contractInstance.totalVotes.call([123,2]).toString())
+            alert(contractInstance.totalVotes.call([123,1]).toString());
         });
     }
 
