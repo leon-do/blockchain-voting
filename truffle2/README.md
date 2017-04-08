@@ -4,6 +4,10 @@
 
 `$ truffle init webpack`
 
+add sol file in contracts folder
+
+update 2_deploy_contracts.js
+
 
 
 
