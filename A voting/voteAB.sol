@@ -5,6 +5,7 @@ contract myContract {
     uint public voteA = 0;
     uint public voteB = 0;
 
+    // [123,1]
     function totalVotes(uint[] userArray) returns (uint){
         if (userArray[0] != 123) throw;
         

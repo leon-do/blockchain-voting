@@ -24,7 +24,11 @@
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script>
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+import { default as Web3} from 'web3';
+
+    //web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+console.log(web3.currentProvider)
 
     // ABI: Once the code is compiled, your application accesses the binary data in the library through the ABI. The ABI defines the structures and methods that your compiled application will use to access the external library (just like the API did), only on a lower level.
 
@@ -32,7 +36,7 @@
     VotingContract = web3.eth.contract(abi);
     
     // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
-    contractInstance = VotingContract.at('0x50f3dcc18263c94778a0294466642958f3a809f0');
+    contractInstance = VotingContract.at('0x2B79dFf7cD509365B664ED7A1d4C06Ee04c15e31');
 
     //when user clicks on button
     function onVoteA(){
