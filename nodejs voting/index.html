@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <pre>
+    $ testrpc
+    $ node server.js
+    copy paste address from terminal to: contractInstance = VotingContract.at('ADDRESS_HERE');
+    open index.html
+    click vote
+    </pre>
+
+    <button id='voteBttn' onclick="onVote()""> Vote </button>
+
+</body>
+
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script>
+    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+    // ABI: Once the code is compiled, your application accesses the binary data in the library through the ABI. The ABI defines the structures and methods that your compiled application will use to access the external library (just like the API did), only on a lower level.
+
+    abi = JSON.parse('[{"constant":false,"inputs":[{"name":"userArray","type":"uint256[]"}],"name":"totalVotes","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteA","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteB","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}]')
+    VotingContract = web3.eth.contract(abi);
+    
+    // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
+    contractInstance = VotingContract.at('0x51ffaecf872b44f8554a0629a94cae87d9778f1d');
+
+    //when user clicks on button
+    function onVote(){
+        //interact with contract
+        contractInstance.totalVotes([123,1], {from: web3.eth.accounts[0]}, function() {
+            //get results and display for user
+            alert(contractInstance.totalVotes.call([123,1]).toString());
+        });
+    }
+
+</script>
+
+
+
+</html>
