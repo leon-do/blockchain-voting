@@ -10,7 +10,7 @@ var app = express();
 
 app.get('/', function (req, res) {
     res.send("sent 2 voteBitch")
-    voteBitch([123,1])
+    voteBitch([123,1]) //goes to VOTE section
 })
 
 app.listen(3000)
@@ -30,13 +30,11 @@ var code = fs.readFileSync('voteAB.sol').toString()
 var contract =  web3.eth.compile.solidity(code)
 
 
-
-
 // ===============VOTE========================================
 
-var VotingContract = web3.eth.contract(contract.info.abiDefinition)
+var VotingContract = web3.eth.contract(contract['<stdin>:myContract'].info.abiDefinition)
 
-var contractInstance = VotingContract.at('0x51ffaecf872b44f8554a0629a94cae87d9778f1d')
+var contractInstance = VotingContract.at('0x2B79dFf7cD509365B664ED7A1d4C06Ee04c15e31')
 
 // voting
 function voteBitch(votingArray){
