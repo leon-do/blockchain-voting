@@ -1,3 +1,5 @@
+// https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2
+
 var fs = require('fs')
 var Web3 = require('web3')
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));

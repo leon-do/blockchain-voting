@@ -33,6 +33,9 @@ var VotingContract = web3.eth.contract(contract.info.abiDefinition)
 // 'data: contract.code' is 0x60606040523461000057...aka the source code
 // 'from' line 7: 0xfd38ec10cb7f8be16100b033193e38962646e340
 // 'gas': cost to interact with blockchain. set max amount
+
+console.log(contract.code)
+
 VotingContract.new(['Rama','Nick','Jose'],{data: contract.code, from: web3.eth.accounts[0], gas: 4700000}, function(error, contract){
     if(!error) {
 

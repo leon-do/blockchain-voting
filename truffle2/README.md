@@ -8,7 +8,11 @@ add sol file in contracts folder
 
 update 2_deploy_contracts.js
 
+`$ geth --rpc --rpcapi "web3,net,personal,eth"`
 
+`$ truffle console`
+
+`$ web3.eth.getBalance('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3')`
 
 
 # truffle-init-webpack
