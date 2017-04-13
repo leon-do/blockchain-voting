@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <pre>
+    $ geth --testnet --rpc console
+    $ web3.personal.unlockAccount('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3', "password", 99999)
+    $ node server.js
+    localhost:3000
+    refresh page
+    check terminal
+    </pre>
+
+    <button onclick="onVote([123,1])""> Vote1 </button>
+    <button onclick="onVote([123,2])""> Vote2 </button>
+
+</body>
+
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    //when user clicks on button
+    function onVote(voteArray){
+        console.log(voteArray)
+        $.post('/vote', {voteArray:voteArray})
+    }
+
+</script>
+
+
+
+</html>

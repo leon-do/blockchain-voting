@@ -1,14 +1,20 @@
 var fs = require('fs')
 var Web3 = require('web3')
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+var bodyParser = require('body-parser')
 
 // ===============EXPRESS SHIT========================================
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
-    // NOTE THIS DOES NOT INTERACT WITH INDEX.HTML (will connect lata)
-    voteBitch([123,1]) //goes to VOTE section
+app.use(bodyParser.urlencoded ({ extended:true }));
+
+//display index.html
+app.use(express.static(__dirname));
+
+app.post('/vote', function (req, res) {
+    //req.body.voteArray is [123,1]
+    voteBitch(req.body.voteArray) //goes to VOTE section
 })
 
 app.listen(3000, function(){
