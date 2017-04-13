@@ -13,7 +13,9 @@ app.get('/', function (req, res) {
     voteBitch([123,1]) //goes to VOTE section
 })
 
-app.listen(3000)
+app.listen(3000, function(){
+    console.log(3000)
+})
 
 
 
@@ -21,7 +23,6 @@ app.listen(3000)
 
 //from the voting.sol file
 var code = fs.readFileSync('voteAB.sol').toString()
-
 
 
 // ===============COMIPILE CONTRACT========================================
@@ -41,11 +42,21 @@ var contractInstance = VotingContract.at('0x2B79dFf7cD509365B664ED7A1d4C06Ee04c1
 
 // voting
 function voteBitch(votingArray){
+
+    //unlock the account
+    //web3.personal.unlockAccount("0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3", "password")
+
     //voting array is [123,1] or [123,2]
-    contractInstance.totalVotes(votingArray, {data: contract['<stdin>:myContract'].code, from: '0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3'})
-    .then(function(){
+    // contractInstance.totalVotes(votingArray, {data: contract['<stdin>:myContract'].code, from: '0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3'})
+    // .then(function(){
+    //     console.log(contractInstance.voteA.call())
+    // })
+
+    contractInstance.totalVotes(votingArray, {data: contract['<stdin>:myContract'].code, from: '0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3'}, function(){
         console.log(contractInstance.voteA.call())
+        console.log(contractInstance.voteB.call())
     })
+
 }
 
 

@@ -1,20 +1,3 @@
-<h1> INSTRUCTIONS </h1>
-
-- https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-2-30b3d335aa1f
-
-`$ truffle init webpack`
-
-add sol file in contracts folder
-
-update 2_deploy_contracts.js
-
-`$ geth --rpc --rpcapi "web3,net,personal,eth"`
-
-`$ truffle console`
-
-`$ web3.eth.getBalance('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3')`
-
-
 # truffle-init-webpack
 Example webpack project with Truffle. Includes contracts, migrations, tests, user interface and webpack build pipeline.
 

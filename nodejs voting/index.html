@@ -6,11 +6,12 @@
 <body>
 
     <pre>
-    $ testrpc
+    $ geth --testnet --rpc console
+    $ web3.personal.unlockAccount('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3', "password", 99999)
     $ node server.js
     copy paste address from terminal to: contractInstance = VotingContract.at('ADDRESS_HERE');
     open index.html
-    click vote
+    refresh page
     </pre>
 
     <button id='voteBttn' onclick="onVote()""> Vote </button>
