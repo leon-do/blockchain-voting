@@ -50,19 +50,10 @@ function voteBitch(votingArray){
     //unlock the account
     web3.personal.unlockAccount('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3', "password", 99999)
 
-    
-    // contractInstance.totalVotes(
-    //     votingArray, 
-    //     {data: contract['<stdin>:myContract'].code, 
-    //     from: '0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3'})
-    // .then(function(){
-    //     console.log(contractInstance.voteA.call())
-    //     console.log(contractInstance.voteB.call())
-    // })
-
     contractInstance.totalVotes(votingArray, {data: contract['<stdin>:myContract'].code, from: '0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3'}, function(){
         console.log(contractInstance.voteA.call())
         console.log(contractInstance.voteB.call())
+        web3.personal.lockAccount('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3')
     })
 
 }
