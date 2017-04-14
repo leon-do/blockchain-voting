@@ -47,6 +47,9 @@ var contractInstance = VotingContract.at('0x2B79dFf7cD509365B664ED7A1d4C06Ee04c1
 // voting
 function voteBitch(votingArray){
 
+    console.log(contract)
+
+
     //unlock the account
     web3.personal.unlockAccount('0x26F14FaBCa8A3c18E12F0B83Ac991F5dC7A7A7f3', "password", 99999)
 
