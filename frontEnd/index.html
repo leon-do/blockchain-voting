@@ -5,9 +5,12 @@
 
 </head>
 <body>
-    <pre> $ geth --testnet --rpc --rpccorsdomain "*"  --rpcapi="db,eth,net,web3,personal,web3" </pre>
+    
+    <pre> 
+$ geth --testnet --rpc --rpccorsdomain "*"  --rpcapi="db,eth,net,web3,personal,web3" 
+    </pre>
 
-    <button id='voteBttn' onclick="onVote()""> Vote </button>
+    <button id='voteBttn' onclick="onVote()""> Vote A </button>
 
 </body>
 
@@ -19,11 +22,7 @@
     // ABI: Once the code is compiled, your application accesses the binary data in the library through the ABI. The ABI defines the structures and methods that your compiled application will use to access the external library (just like the API did), only on a lower level.
     var VotingContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"userArray","type":"uint256[]"}],"name":"totalVotes","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteA","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteB","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}])
 
-    // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
     var contractInstance = VotingContract.at('0x2B79dFf7cD509365B664ED7A1d4C06Ee04c15e31')
-
-
-
 
 
     //when user clicks on button
