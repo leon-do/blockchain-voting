@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+<script src="lightwallet.min.js"></script>
+<script>
+
+// The file lightwallet.min.js exposes the global object lightwallet to the browser which has the two main modules lightwallet.keystore and lightwallet.txutils
+
+var password = 'password123'
+
+lightwallet.keystore.createVault({
+    password: password
+}, function(err, ks){
+
+    //KeyStore {defaultHdPathString: "m/0'/0'/0'", salt: "O2ZGM1h9McfE2GsLXPJHLgszBroXT8XoArgR3WBTanQ=", ksData: Object, encSeed: Object, encHdRootPriv: Object…}
+    console.log(ks)
+
+    ks.keyFromPassword(password, function(err, pwDerivedKey){
+
+        // Uint8Array(32) [194, 5, 81, 242, 130, 166, 186, 152, 109, 141, 122, 81, 150, 20, 189, 22, 233, 137, 206, 0, 173, 95, 136, 110, 100, 217, 227, 95, 205, 252, 85, 213]
+        console.log(pwDerivedKey)
+
+        ks.generateNewAddress(pwDerivedKey, 5);
+        var addr = ks.getAddresses();
+
+        // generate five new address/private key pairs
+        //["d4ba71732be3aea792b3b293a5cf9d8a6731d1ca", "7be19d6bd3aef673e4893533d3d2009ad457735c", "65d4d2d5a9c1c75e82a23f9438f83327fe567b58", "2dbb29bb4ae08283094daefc1b0d2ea95312bc63", "d7b46d174e0e33856cf640136e5c4b99039700d8"]
+        console.log(addr)
+
+
+        // display private key
+        var privateKey = ks.exportPrivateKey(addr[1], pwDerivedKey)
+        console.log(privateKey)
+
+    })
+});
+
+
+</script>
+
