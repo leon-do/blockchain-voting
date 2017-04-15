@@ -5,10 +5,6 @@
 
 </head>
 <body>
-    
-    <pre> 
-$ geth --testnet --rpc --rpccorsdomain "*"  --rpcapi="db,eth,net,web3,personal,web3" 
-    </pre>
 
     <button id='voteBttn' onclick="onVote()""> Vote A </button>
 
@@ -27,19 +23,17 @@ $ geth --testnet --rpc --rpccorsdomain "*"  --rpcapi="db,eth,net,web3,personal,w
     // https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq 
     // https://ipfs.infura.io:5001 
     // http://localhost:8545
-    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    var web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq "));
 
     // ABI: Once the code is compiled, your application accesses the binary data in the library through the ABI. The ABI defines the structures and methods that your compiled application will use to access the external library (just like the API did), only on a lower level.
     var VotingContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"userArray","type":"uint256[]"}],"name":"totalVotes","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteA","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteB","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}])
 
     var contractInstance = VotingContract.at(contractAddress)
 
+console.log(contractInstance.voteA.call())
 
     //when user clicks on button
     function onVote(){
-
-        //unlock account
-        web3.personal.unlockAccount(userAddress, "password", 99999)
 
         //interact with contract
         contractInstance.totalVotes([123,1], 
@@ -51,8 +45,6 @@ $ geth --testnet --rpc --rpccorsdomain "*"  --rpcapi="db,eth,net,web3,personal,w
             //get results and display for user
             alert(contractInstance.voteA.call())
 
-            //lock it up
-            web3.personal.lockAccount(userAddress)
         });
     }
 

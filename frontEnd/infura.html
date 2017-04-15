@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    https://infura.io/docs/#supported-json-rpc-methods
+    <div id="answer"></div>
+</body>
+</html>
+
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+<script>
+
+    var url = "https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq"
+    var data = '{"jsonrpc": "2.0", "id": 1, "method": "eth_getBalance", "params": ["0xfde8d3bbea25eb7d93b89f6e75396036fc07bae4", "latest"]}'
+
+    $.post(url, data, function(data){
+        console.log(data)
+        $("#answer").text(data.result)
+    })
+
+</script>
+
