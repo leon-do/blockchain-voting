@@ -21,16 +21,13 @@
     var contractAddress = '0x2B79dFf7cD509365B664ED7A1d4C06Ee04c15e31'
 
     // https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq 
-    // https://ipfs.infura.io:5001 
-    // http://localhost:8545
-    var web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq "));
+    var web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq"));
 
     // ABI: Once the code is compiled, your application accesses the binary data in the library through the ABI. The ABI defines the structures and methods that your compiled application will use to access the external library (just like the API did), only on a lower level.
     var VotingContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"userArray","type":"uint256[]"}],"name":"totalVotes","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteA","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"voteB","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}])
 
     var contractInstance = VotingContract.at(contractAddress)
 
-console.log(contractInstance.voteA.call())
 
     //when user clicks on button
     function onVote(){
@@ -38,7 +35,6 @@ console.log(contractInstance.voteA.call())
         //interact with contract
         contractInstance.totalVotes([123,1], 
             {   
-                data: '0x606060405260006000556000600155341561001657fe5b5b6101a5806100266000396000f300606060405263ffffffff60e060020a60003504166320896e7a811461003757806355416e061461009c578063fb32aedb146100be575bfe5b341561003f57fe5b61008a6004808035906020019082018035906020019080806020026020016040519081016040528093929190818152602001838360200280828437509496506100e095505050505050565b60408051918252519081900360200190f35b34156100a457fe5b61008a61016d565b60408051918252519081900360200190f35b34156100c657fe5b61008a610173565b60408051918252519081900360200190f35b60008160008151811015156100f157fe5b60209081029091010151607b146101085760006000fd5b81600181518110151561011757fe5b906020019060200201516001141561013a57506000805460010190819055610167565b81600181518110151561014957fe5b90602001906020020151600214156101675750600180548101908190555b5b919050565b60005481565b600154815600a165627a7a7230582085a252602e79367e7eb1c0ae74c1fe75a1852ef86138afaccc70adb802ebeb6d0029',
                 from:userAddress
             }, function() {
 
