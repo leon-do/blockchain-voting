@@ -1,0 +1,69 @@
+<html>
+  <body>
+
+    <script src="script/lightwallet.min.js"></script>
+    <script src="script/web3.js"></script>
+    <script src="script/hooked-web3-provider.js"></script>
+    <script src="script/async.js"></script>
+
+    <script>
+      var web3 = new Web3();
+      var global_keystore;
+
+
+      function setWeb3Provider(keystore) {
+        var web3Provider = new HookedWeb3Provider({
+          host: "https://ropsten.infura.io/5XLCCoLbx9Ey7RAjtzUq",
+          transaction_signer: keystore
+        });
+        web3.setProvider(web3Provider);
+      }
+
+
+      function newAddresses(password) {
+        
+        if (password == '') {
+          password = prompt('Enter password to retrieve addresses', 'Password');
+        }
+        var numAddr = parseInt(document.getElementById('numAddr').value)
+        lightwallet.keystore.deriveKeyFromPassword(password, function(err, pwDerivedKey) {
+        global_keystore.generateNewAddress(pwDerivedKey, numAddr);
+        var addresses = global_keystore.getAddresses();
+        document.getElementById('sendFrom').innerHTML = ''
+        document.getElementById('functionCaller').innerHTML = ''
+        for (var i=0; i<addresses.length; ++i) {
+          document.getElementById('sendFrom').innerHTML += '<option value="' + addresses[i] + '">' + addresses[i] + '</option>'
+          document.getElementById('functionCaller').innerHTML += '<option value="' + addresses[i] + '">' + addresses[i] + '</option>'
+        }
+        getBalances();
+      })
+      }
+
+      function newWallet() {
+        //generates random string
+        var extraEntropy = Math.random().toString(36).substring(2);
+
+        var randomSeed = lightwallet.keystore.generateRandomSeed(extraEntropy);
+        var infoString = 'Your new wallet seed is: "' + randomSeed + 
+          '". Please write it down on paper or in a password manager, you will need it to access your wallet. Do not let anyone see this seed or they can take your Ether. ' +
+          'Please enter a password to encrypt your seed while in the browser.'
+        var password = prompt(infoString, 'Password');
+        lightwallet.keystore.deriveKeyFromPassword(password, function(err, pwDerivedKey) {
+        global_keystore = new lightwallet.keystore(
+          randomSeed,
+          pwDerivedKey);
+                
+        newAddresses(password);
+        setWeb3Provider(global_keystore);
+        getBalances();
+        })
+      }
+
+    </script>
+
+
+
+    <button onclick="newWallet()">Create New Wallet</button>
+   
+  </body>
+</html>
